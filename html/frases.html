@@ -30,15 +30,20 @@
         </ul>
         <hr>
         <label for="idFrase">Frase:</label>
-        <input id="idFrase" type="text">
+        <input  v-model="frase" id="idFrase" type="text">
+        <p>{{frase}}</p>
         <label for="idAutor">Autor:</label>
-        <input id="idAutor" type="text">
-        <button>Agregar</button>
+        <!-- <input v-on:keypress="eventoKeyPress" v-model="autor" id="idAutor" type="text"> -->
+        <input v-on:keypress.enter="eventoKeyPressModificador" v-model="autor" id="idAutor" type="text">
+
+        <button v-on:click="agregarFrase">Agregar</button>
+        <button v-on:click="agregarFraseFinal">Agregar  al Final</button>
+
         <ul>
             <!-- desestructuracion de objetos -->
             <li v-for="{frase,autor} in listafrases">{{frase}} - {{autor}}
-                <button> {{autor}} </button>
-                <p>{{frase}}</p>
+                <button v-if="autor!==null"> {{autor}} </button>
+                <p v-if="autor!==null">Autor: {{frase}}</p>
             </li>
 
         </ul>
